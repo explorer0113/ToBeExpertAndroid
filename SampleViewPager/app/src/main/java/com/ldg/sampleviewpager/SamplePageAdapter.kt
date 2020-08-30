@@ -1,39 +1,59 @@
 package com.ldg.sampleviewpager
 
+import android.content.Context
 import android.support.v4.view.PagerAdapter
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 
 
 /*
-* TODO: Implement Adapter
+* Implement Adapter
 *
 * */
 
 
-class SamplePageAdapter()
-    : PagerAdapter() {
-    //TODO 1. constructor contains context and data for layout inflater
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+class SamplePageAdapter
+    (  // 1. constructor contains context and data for layout inflater
+    private val context: Context, private val list: List<Predator>
+)
+    : PagerAdapter(
+) {
 
-        //TODO 2. get layout inflater, inflating view item to container,
-        return super.instantiateItem(container, position)
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        //2. get layout inflater, inflating view item to container,
+        val inflater:LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view= inflater.inflate(R.layout.sample_item_layout,container,false)
+
+        val image=view.findViewById<ImageView>(R.id.predatorImage)
+        val name=view.findViewById<TextView>(R.id.predatorName)
+        image.setImageDrawable(list.get(position).image)
+        name.setText(list.get(position).name)
+
+        container.addView(view)
+
+
+        return view
     }
 
     override fun isViewFromObject(view: View, any: Any): Boolean {
-        //TODO 4. check if object is view
-        return false
+        // 4. check if object is view
+        return view== any as View
     }
 
     override fun getCount(): Int {
-        //TODO 3. return data list size
-        return 0
+        //3. return data list size
+        return list.size
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         super.destroyItem(container, position, `object`)
-        //TODO 5. remove item
+        //5. remove item
+        container.removeViewAt(position)
     }
+
 
 
 }

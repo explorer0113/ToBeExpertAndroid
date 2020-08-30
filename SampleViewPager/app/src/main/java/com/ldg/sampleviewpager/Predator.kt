@@ -1,7 +1,8 @@
 package com.ldg.sampleviewpager
 
-import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 
 /*
-*  TODO Implementing data class
+*  Implementing data class
  * */
+data class Predator(val image:Drawable?,val name:String)
