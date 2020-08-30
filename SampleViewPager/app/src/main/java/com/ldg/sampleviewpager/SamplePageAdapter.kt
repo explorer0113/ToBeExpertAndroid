@@ -11,10 +11,17 @@ import android.view.ViewGroup
 * */
 
 
-class SamplePageAdapter : PagerAdapter() {
+class SamplePageAdapter()
+    : PagerAdapter() {
     //TODO 1. constructor contains context and data for layout inflater
-    override fun isViewFromObject(p0: View, p1: Any): Boolean {
-        //TODO 2.
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+
+        //TODO 2. get layout inflater, inflating view item to container,
+        return super.instantiateItem(container, position)
+    }
+
+    override fun isViewFromObject(view: View, any: Any): Boolean {
+        //TODO 4. check if object is view
         return false
     }
 
@@ -25,7 +32,7 @@ class SamplePageAdapter : PagerAdapter() {
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         super.destroyItem(container, position, `object`)
-        //TODO 4. remove item
+        //TODO 5. remove item
     }
 
 
